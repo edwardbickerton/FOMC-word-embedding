@@ -45,9 +45,6 @@ sentences_dict = {
 }
 
 if __name__ == "__main__":
-    pre_trained_model = gensim.downloader.load("word2vec-google-news-300")
-    pre_trained_model.save(f"models/pre_trained/word2vec-google-news-300.model")
-
     for config in CONFIGS:
         model = gensim.models.Word2Vec(
             sentences=sentences_dict[config],
@@ -60,4 +57,4 @@ if __name__ == "__main__":
             ns_exponent=0.75,  # default used in paper
             sample=0.00001,
         )
-        model.save(f"models/from_scratch/trained_on_{config}.model")
+        model.wv.save(f"models/trained_on_{config}.kv")
