@@ -13,6 +13,11 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
+# Word2Vec Hyperparameters
+vector_size = 300
+window = 10
+num_negative_samples = 15
+
 
 class LoadSentences:
     def __init__(self, path):
@@ -45,6 +50,14 @@ if __name__ == "__main__":
 
     for config in CONFIGS:
         model = gensim.models.Word2Vec(
-            sentences_dict[config], min_count=1, vector_size=200, workers=4
+            sentences=sentences_dict[config],
+            vector_size=vector_size,
+            window=window,
+            min_count=5,  # default
+            workers=4,
+            sg=1,
+            negative=num_negative_samples,
+            ns_exponent=0.75,  # default used in paper
+            sample=0.00001,
         )
         model.save(f"models/from_scratch/trained_on_{config}.model")
