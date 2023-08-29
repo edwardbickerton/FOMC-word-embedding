@@ -156,3 +156,4 @@ cython_debug/
 .vscode
 hidden_vars.py
 models/
+*.ipynb
