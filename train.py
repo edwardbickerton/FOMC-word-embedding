@@ -56,5 +56,6 @@ if __name__ == "__main__":
             negative=num_negative_samples,
             ns_exponent=0.75,  # default used in paper
             sample=0.00001,
+            shrink_windows=True,
         )
         model.wv.save(f"models/trained_on_{config}.kv")
